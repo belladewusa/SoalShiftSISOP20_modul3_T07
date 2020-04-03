@@ -22,9 +22,6 @@ void* makedir(void *data);
 void* move(void *data);
 void* thread(void *arg);
 
-
-          }
-
 if (-f)
 {
 }
