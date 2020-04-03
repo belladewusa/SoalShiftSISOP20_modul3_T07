@@ -93,11 +93,10 @@ int main()
         int shmid = shmget(key, sizeof(int[10][10]), IPC_CREAT | 0666);
         hasil = shmat(shmid, 0, 0);
 
-	pthread_create(&tid1, NULL, matrix_1, NULL);
-	pthread_join(thr1,NULL);
-
 	pthread_create(&tid2, NULL, matrix_2, NULL);
 	pthread_join(thr2,NULL);
+	pthread_create(&tid1, NULL, matrix_1, NULL);
+	pthread_join(thr1,NULL);
 
 	for(i=0;i<row1;i++)
 	{
