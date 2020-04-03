@@ -1,0 +1,126 @@
+#include <stdio.h> 
+#include <pthread.h> 
+#include <sys/ipc.h> 
+#include <sys/shm.h> 
+#include <unistd.h> 
+
+int row1=4;
+int column1=2;
+int row2=2;
+int column2=5;
+int matrix01[20][20];
+int matrix02[20][20];
+int (*hasil)[20];
+int status;
+
+pthread_t thr1, thr2, thr3;
+
+void *perkalian(void *);
+void *matrix_1(void *);
+void *matrix_2(void *);
+
+void *matrix_1(void *arg)
+{
+	status=0;
+        matrix01[0][0]=1;matrix01[0][1]=1;
+        matrix01[1][0]=1;matrix01[1][1]=1;
+        matrix01[2][0]=1;matrix01[2][1]=1;
+        matrix01[3][0]=1;matrix01[3][1]=1;
+
+	status=1;
+	return NULL;
+}
+
+
+void *matrix_2(void *arg)
+{
+	while(status!=1)
+	{
+
+	}
+        matrix02[0][0]=2;matrix02[1][0]=2;
+        matrix02[0][1]=2;matrix02[1][1]=2;
+        matrix02[0][2]=2;matrix02[1][2]=2;
+       matrix02[0][3]=2;matrix02[1][3]=2;
+        matrix02[0][4]=2;matrix02[1][4]=2;
+       
+	status=2;
+	return NULL;
+}
+
+void *perkalian(void *arg)
+{
+	while(status!=2)
+	{
+
+	}
+	int i, j, k;
+	for(i=0;i<row1;i++)
+	{
+		for(j=0;j<colomn2;j++)
+		{
+			for(k=0;k<2;k++)
+			{
+				hasil[i][j] +=matrix01[i][k] * matrix02[k][j];
+			}
+		}
+	}
+	return NULL;
+}
+
+int main()
+{
+	int i, j;
+	key_t key = 1234;
+        int shmid = shmget(key, sizeof(int[10][10]), IPC_CREAT | 0666);
+        hasil = shmat(shmid, 0, 0);
+
+	pthread_create(&tid1, NULL, matrix_1, NULL);
+	pthread_join(thr1,NULL);
+
+	pthread_create(&tid2, NULL, matrix_2, NULL);
+	pthread_join(thr2,NULL);
+
+	for(i=0;i<row1;i++)
+	{
+		for(j=0;j<colomn2;j++)
+		{
+			hasil[i][j]=0;
+		}
+		pthread_create(&thr3, NULL, perkalian, NULL);
+		pthread_join(thr3,NULL);
+	}
+
+printf("matrix 1\n");
+	for(i=0;i<row1;i++)
+	{
+		for(j=0;j<colomn1;j++)
+		{
+			printf("%d\t", matrix01[i][j]);
+		}
+		printf("\n");
+	}
+
+printf("matrix 2\n");
+	for(i=0;i<row2;i++)
+	{
+		for(j=0;j<colomn2;j++)
+		{
+			printf("%d\t", matrix02[i][j]);
+		}
+		printf("\n");
+	}
+
+
+	printf("Hasil Perkalian\n");
+	for(i=0;i<row1;i++)
+	{
+		for(j=0;j<colomn2;j++)
+		{
+			printf("%d\t", hasil[i][j]);
+		}
+		printf("\n");
+	}
+
+	return 0;
+}
