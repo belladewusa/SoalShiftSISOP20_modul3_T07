@@ -19,23 +19,6 @@ void *perkalian(void *);
 void *matrix_1(void *);
 void *matrix_2(void *);
 
-oid *perkalian(void *arg)
-{
-	status=0;
-	{
-
-	}
-	int i, j, k;
-	for(i=0;i<row1;i++){
-		for(j=0;j<colomn2;j++){
-			for(k=0;k<2;k++)
-			{
-				hasil[i][j] +=matrix01[i][k] * matrix02[k][j];
-			}
-		}
-	}
-	return NULL;
-}
 void *perkalian(void *arg)
 {
 	status=0;
