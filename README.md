@@ -252,6 +252,32 @@ star case
 
 ### DOKUMETASI
 
+**Contoh Output:**\
+![Output Soal 4A](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/1.png)
+
+**Contoh Output:**\
+![Output Soal 4B](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/2.png)
+
+**Contoh Output:**\
+![Output Soal 4A](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/3.png)
+
+**Contoh Output:**\
+![Output Soal 4B](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/4.png)
+
+**Contoh Output:**\
+![Output Soal 4A](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/5.png)
+
+**Contoh Output:**\
+![Output Soal 4B](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/6.png)
+
+**Contoh Output:**\
+![Output Soal 4A](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/7.png)
+
+**Contoh Output:**\
+![Output Soal 4B](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/8.png)
+
+**Contoh Output:**\
+![Output Soal 4A](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/9.png)
 
 
 
