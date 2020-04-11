@@ -24,7 +24,7 @@ list library
         #include <ctype.h>
         #include <libgen.h>
 
-mendefinisikan suatu nilai tertentu kepada suatu nama konstanta
+mendefinisikan suatu nilai tertentu kepada suatu nama konstanta dengan menggunakan define
 
         #define TRUE 1
         #define FALSE 0
@@ -43,7 +43,7 @@ isDirectory cek apakah path yang dimasukkan adalah path ke directory atau file
         }
 
 
-checkAllFileExist cek apakah semua path file yang dimasukkan ada
+checkAllFileExist , digunakan untuk cek apakah semua path file yang dimasukkan ada
 
         int checkAllFileExist(int argc, char *argv[]) {
             int i;
@@ -64,7 +64,7 @@ checkAllFileExist cek apakah semua path file yang dimasukkan ada
         }
 
 
- get_filename_ext untuk mendapat ekstensi dari suatu file
+ get_filename_ext , dimana untuk mendapat ekstensi dari suatu file
 
         const char *get_filename_ext(const char *filename) {
             const char *dot = strrchr(filename, '.');
@@ -74,7 +74,7 @@ checkAllFileExist cek apakah semua path file yang dimasukkan ada
         }
 
 
-checkMainArg checking argumen yang dimasukkan ke program
+checkMainArg , yaitu untuk checking argumen yang dimasukkan ke program
 
         int checkMainArg(int argc, char *argv[]) {
             if(argc < 2)
@@ -94,7 +94,7 @@ checkMainArg checking argumen yang dimasukkan ke program
         }
 
 
-moveFileToNewPath memindahkan file ke path baru
+moveFileToNewPath, untuk memindahkan file ke path baru
 
         void moveFileToNewPath(char *source, char *dest) {
             FILE *fp1, *fp2;
@@ -112,7 +112,7 @@ moveFileToNewPath memindahkan file ke path baru
         }
 
 
-moveFile fungsi untuk memindahkan ke suatu directory
+moveFile fungsi dimana digunakan untuk memindahkan ke suatu directory
 
         void *moveFile( void *ptr )
         {
@@ -147,7 +147,7 @@ moveFile fungsi untuk memindahkan ke suatu directory
         }
 
 
-Lalu di main function
+Lalu main function dimana terdapat output argumen salah jika inputnya salah
 
         int main(int argc, char *argv[]) {
             int check = checkMainArg(argc, argv), i = 0, iret[10000], let = 1;
@@ -162,7 +162,7 @@ Lalu di main function
             struct dirent *ep;     
             DIR *dp;
 
-case F
+case F Dimana akan diproses jika diminputkan argumen -f
 
             switch (check)
             {
@@ -182,7 +182,7 @@ case F
                 }
                 break;
 
-case D
+case D, ini akan diproses jika inputnya berupa argumen -d
 
             case D:
                 getcwd(curr_dirr, sizeof(curr_dirr));
@@ -218,7 +218,7 @@ case D
                 }
                 break;
 
-star case
+case star yang akan diproses jika inputnya berupa argumen *
 
             case STAR:
                 if(getcwd(curr_dirr, sizeof(curr_dirr)) != NULL) {
