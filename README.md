@@ -117,6 +117,8 @@ dan melakukan join (fungsi wait) pada tiap tiap thread
   
   melakukan print pada hasil perkalian
   
+  ![OUTPUT](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/modul3/1586609247597.jpg)
+  
 ## soal no 4c
 
 Batu ketiga adalah Onyx. Batu mulia berwarna hitam mengkilat. Pecahkan
@@ -178,6 +180,8 @@ fungsi untuk melakukan listing pada direktori tempat program berada
  fungsi wc yang digunakan untuk Menampilkan jumlah baris, kata, dan besar memori suatu file.
  lalu menggunakan -l untuk mengambil jumlah direktori yang ada
 
+
+ ![OUTPUT](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/modul3/1586609324106.jpg)
 
 ## kendala :
 1 dan 2 : tidak sanggup membayangkan harus menggunakan fungsi apa saja dan bagaimana pengerjaannya.
