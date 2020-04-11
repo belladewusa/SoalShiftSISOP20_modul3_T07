@@ -232,7 +232,7 @@ star case
                             strcat(temp, ep->d_name);
                             if(strcmp(".",ep->d_name) !=0 && strcmp("..",ep->d_name) != 0 && !isDirectory(temp)) {
                                 char *arr = temp;
-                                iret[i] = pthread_create(&threads[i], NULL, moveFile, (void*) arr);
+                                iret[i] = pthread_creae(&threads[i], NULL, moveFile, (void*) arr);
                         
                                 if(iret[i])
                                 {
