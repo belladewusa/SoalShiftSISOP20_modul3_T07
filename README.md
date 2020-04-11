@@ -167,6 +167,7 @@ Lalu di main function
             DIR *dp;
 
 case F
+
             switch (check)
             {
             case F:
@@ -186,6 +187,7 @@ case F
                 break;
 
 case D
+
             case D:
                 getcwd(curr_dirr, sizeof(curr_dirr));
                 if(argv[2][0] != '/'){
@@ -221,6 +223,7 @@ case D
                 break;
 
 star case
+
             case STAR:
                 if(getcwd(curr_dirr, sizeof(curr_dirr)) != NULL) {
                     dp = opendir (curr_dirr);
