@@ -116,6 +116,67 @@ dan melakukan join (fungsi wait) pada tiap tiap thread
 	}
   
   melakukan print pada hasil perkalian
+  
+## soal no 4c
+
+Batu ketiga adalah Onyx. Batu mulia berwarna hitam mengkilat. Pecahkan
+teka-teki berikut!
+
+1. Buatlah program C ketiga dengan nama "4c.c". Program ini tidak
+memiliki hubungan terhadap program yang lalu.
+2. Pada program ini, Norland diminta mengetahui jumlah file dan
+folder di direktori saat ini dengan command "ls | wc -l". Karena sudah belajar
+IPC, Norland mengerjakannya dengan semangat.
+(Catatan! : Harus menggunakan IPC Pipes)
+
+
+    #include<stdio.h>
+    #include<stdlib.h>
+    #include<unistd.h>
+    #include<sys/types.h>
+    #include<string.h>
+    #include<sys/wait.h>
+    
+ library yang digunakan 
+ 
+
+	int main() {
+  	int fd[4];
+  	pid_t pid;
+ 	pipe(fd);
+
+membuat file deskriptor (tiap pipe membutuhkan 2 file deskriptor)
+
+
+  	pid = fork();
+ 	 if (pid == 0) {
+    dup2(fd[1], 1);
+    close(fd[0]);
+    close(fd[1]);
+    close(fd[2]);
+    close(fd[3]);
+    char *argv[] = {"ls", NULL};
+    execv("/bin/ls", argv);
+  }
+  while(wait(NULL) > 0);
+
+fungsi untuk melakukan listing pada direktori tempat program berada
+
+
+  	pid = fork();
+  	if (pid == 0) {
+    dup2(fd[0], 0);
+    //dup2(fd[3], 1);
+    close(fd[0]);
+    close(fd[1]);
+    close(fd[2]);
+    close(fd[3]);
+    char *argv[] = {"wc", "-l", NULL};
+    execv("/usr/bin/wc", argv);
+  }
+ 
+ fungsi wc yang digunakan untuk Menampilkan jumlah baris, kata, dan besar memori suatu file.
+ lalu menggunakan -l untuk mengambil jumlah direktori yang ada
 
 
 ## kendala :
