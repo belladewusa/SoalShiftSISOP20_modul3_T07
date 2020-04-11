@@ -1,6 +1,260 @@
 # belladewusa-SoalShiftSISOP20_modul3_T07-
 
 
+# belladewusa-SoalShiftSISOP20_modul3_T07-
+
+
+
+## soal no 3
+Membuat program untuk memindahkan file sesuai ekstensinya ke beberapa folder dengan nama sesuai ekstensi filenya. Menggunakan 3 argumen -f , * , dan -d.
+
+###PENJELASAN CODINGAN
+
+header and constant
+list library 
+
+        #include <stdlib.h>
+        #include <sys/types.h>
+        #include <sys/stat.h>
+        #include <unistd.h>
+        #include <wait.h>
+        #include <time.h>
+        #include <stdbool.h>
+        #include <dirent.h>
+        #include <errno.h>
+        #include <stdio.h>
+        #include <string.h>
+        #include <pthread.h>
+        #include <ctype.h>
+        #include <libgen.h>
+
+mendefinisikan suatu nilai tertentu kepada suatu nama konstanta
+
+        #define TRUE 1
+        #define FALSE 0
+        #define F 2
+        #define D 3
+        #define STAR 4
+
+
+isDirectory cek apakah path yang dimasukkan adalah path ke directory atau file
+
+        int isDirectory(const char *path) { //konstanta bertipe karakter
+        struct stat statbuf; 
+        if (stat(path, &statbuf) != 0)
+            return FALSE;
+        return S_ISDIR(statbuf.st_mode);
+        }
+
+
+checkAllFileExist cek apakah semua path file yang dimasukkan ada
+
+        int checkAllFileExist(int argc, char *argv[]) {
+            int i;
+            char curr_dirr[1000];
+            getcwd(curr_dirr, sizeof(curr_dirr));
+            strcat(curr_dirr, "/");
+            for ( i = 2; i < argc; i++)
+            {
+                char temp[1000];
+                if(argv[i][0] != '/') {
+                    strcpy(temp, curr_dirr);
+                    strcat(temp, argv[i]);
+                }else strcpy(temp, argv[i]);
+                struct stat buffer;
+                if(stat(argv[i], &buffer) != 0 || isDirectory(temp)) return FALSE;
+            }
+            return TRUE;
+        }
+
+
+ get_filename_ext untuk mendapat ekstensi dari suatu file
+
+        const char *get_filename_ext(const char *filename) {
+            const char *dot = strrchr(filename, '.');
+            if(!dot || dot == filename) return "";
+
+            return dot;
+        }
+
+
+checkMainArg checking argumen yang dimasukkan ke program
+
+        int checkMainArg(int argc, char *argv[]) {
+            if(argc < 2)
+                return FALSE;
+            if(argv[1][0] == '*' && strlen(argv[1]) == 1 && argc == 2)
+                return STAR;   
+            if(argv[1][0] == '-' && strlen(argv[1]) == 2)
+                switch (argv[1][1])
+                {
+                case 'f':
+                    return (argc < 3)? FALSE : (strlen(argv[1]) != 2)? FALSE : (!checkAllFileExist(argc, argv))? FALSE : F;
+                case 'd':
+                    return (argc != 3)? FALSE : (strlen(argv[1]) != 2)? FALSE : (!isDirectory(argv[2]))? FALSE : D;
+                }
+
+            return FALSE;
+        }
+
+
+moveFileToNewPath memindahkan file ke path baru
+
+        void moveFileToNewPath(char *source, char *dest) {
+            FILE *fp1, *fp2;
+            int ch;
+            
+            fp1 = fopen(source, "r");
+            fp2 = fopen(dest, "w");
+
+            while ((ch = fgetc(fp1)) != EOF) fputc(ch, fp2);
+            
+            fclose(fp1);
+            fclose(fp2);
+
+            remove(source);
+        }
+
+
+moveFile fungsi untuk memindahkan ke suatu directory
+
+        void *moveFile( void *ptr )
+        {
+            char *param = (char *)ptr;
+            const char *extension_temp = get_filename_ext(param);
+            int ch, i, length = strlen(extension_temp);
+            char extension[100];
+            char *filename = basename(param);
+            char new_path[1000],temp[1000];
+
+            memset(new_path, 0, sizeof(new_path));
+            memset(extension, 0, sizeof(extension));
+
+            for ( i = 1; i < length; i++)
+            {
+                extension[i - 1] = tolower(extension_temp[i]);
+            }
+            
+            
+            if(!strlen(extension_temp)) {
+                if(!isDirectory("Unknown"))mkdir("Unknown", 0777);
+                strcpy(new_path, "Unknown/");
+                strcat(new_path, filename);
+            }else{
+                if(!isDirectory(extension))mkdir(extension, 0777);
+                strcpy(new_path, extension);
+                strcat(new_path, "/");
+                strcat(new_path, filename);
+            }
+
+            moveFileToNewPath(param, new_path);
+        }
+
+
+Lalu di main function
+
+        int main(int argc, char *argv[]) {
+            int check = checkMainArg(argc, argv), i = 0, iret[10000], let = 1;
+
+            if(!check) {
+                printf("Argumen Salah!\n");
+                exit(EXIT_FAILURE);
+            }
+
+            char curr_dirr[1000];
+            pthread_t threads[10000];
+            struct dirent *ep;     
+            DIR *dp;
+
+case F
+            switch (check)
+            {
+            case F:
+                for (i = 2; i < argc; i++)
+                {
+                    char *arr = argv[i];
+                    iret[i - 2] = pthread_create(&threads[i - 2], NULL, moveFile, (void*) arr);
+                    
+                    if(iret[i - 2])
+                    {
+                        fprintf(stderr,"Error - pthread_create() return code: %d\n",iret[i - 2]);
+                        exit(EXIT_FAILURE);
+                    }
+
+                    pthread_join(threads[i - 2], NULL); 
+                }
+                break;
+
+case D
+            case D:
+                getcwd(curr_dirr, sizeof(curr_dirr));
+                if(argv[2][0] != '/'){
+                    strcat(curr_dirr, "/");
+                    strcat(curr_dirr, argv[2]);
+                    if(argv[2][strlen(argv[2]) - 1] != '/')
+                        strcat(curr_dirr, "/");
+                }
+                dp = opendir (argv[2]);
+                if(dp != NULL) {
+                    while (ep = readdir (dp)){
+                        char temp[1000];
+                        strcpy(temp, curr_dirr);
+                        strcat(temp, ep->d_name);
+                        if(strcmp(".",ep->d_name) !=0 && strcmp("..",ep->d_name) != 0 && !isDirectory(temp)) {
+                            strcpy(temp, argv[2]);
+                            if(argv[2][strlen(argv[2]) - 1] != '/') strcat(temp, "/");
+                            strcat(temp, ep->d_name);
+                            char *arr = temp;
+                            iret[i] = pthread_create(&threads[i], NULL, moveFile, (void*) arr);
+                    
+                            if(iret[i])
+                            {
+                                fprintf(stderr,"Error - pthread_create() return code: %d\n",iret[i]);
+                                exit(EXIT_FAILURE);
+                            }
+
+                            pthread_join(threads[i], NULL); 
+                        }
+                        i++;
+                    }
+                }
+                break;
+
+star case
+            case STAR:
+                if(getcwd(curr_dirr, sizeof(curr_dirr)) != NULL) {
+                    dp = opendir (curr_dirr);
+                    if(dp != NULL) {
+                        while (ep = readdir (dp)){
+                            char temp[1000];
+                            strcpy(temp, curr_dirr);
+                            strcat(temp, "/");
+                            strcat(temp, ep->d_name);
+                            if(strcmp(".",ep->d_name) !=0 && strcmp("..",ep->d_name) != 0 && !isDirectory(temp)) {
+                                char *arr = temp;
+                                iret[i] = pthread_create(&threads[i], NULL, moveFile, (void*) arr);
+                        
+                                if(iret[i])
+                                {
+                                    fprintf(stderr,"Error - pthread_create() return code: %d\n",iret[i]);
+                                    exit(EXIT_FAILURE);
+                                }
+
+                                pthread_join(threads[i], NULL); 
+                            }
+                            i++;
+                        }
+                    }
+                }
+                break;
+            }
+        }
+
+
+###DOKUMETASI
+
+
+
 
 ## soal no 4
 ### nomor 4a
@@ -117,8 +371,6 @@ dan melakukan join (fungsi wait) pada tiap tiap thread
   
   melakukan print pada hasil perkalian
   
-  ![OUTPUT](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/modul3/1586609247597.jpg)
-  
 ## soal no 4c
 
 Batu ketiga adalah Onyx. Batu mulia berwarna hitam mengkilat. Pecahkan
@@ -180,8 +432,6 @@ fungsi untuk melakukan listing pada direktori tempat program berada
  fungsi wc yang digunakan untuk Menampilkan jumlah baris, kata, dan besar memori suatu file.
  lalu menggunakan -l untuk mengambil jumlah direktori yang ada
 
-
- ![OUTPUT](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/modul3/1586609324106.jpg)
 
 ## kendala :
 1 dan 2 : tidak sanggup membayangkan harus menggunakan fungsi apa saja dan bagaimana pengerjaannya.
