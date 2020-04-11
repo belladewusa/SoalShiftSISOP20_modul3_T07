@@ -1,14 +1,10 @@
 # belladewusa-SoalShiftSISOP20_modul3_T07-
 
 
-# belladewusa-SoalShiftSISOP20_modul3_T07-
-
-
-
 ## soal no 3
 Membuat program untuk memindahkan file sesuai ekstensinya ke beberapa folder dengan nama sesuai ekstensi filenya. Menggunakan 3 argumen -f , * , dan -d.
 
-###PENJELASAN CODINGAN
+### PENJELASAN CODINGAN
 
 header and constant
 list library 
@@ -254,7 +250,7 @@ star case
         }
 
 
-###DOKUMETASI
+### DOKUMETASI
 
 
 
