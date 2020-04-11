@@ -253,31 +253,31 @@ star case
 ### DOKUMETASI
 
 **Contoh Output:**\
-![Output Soal 4A](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/1.png)
+![Output Soal ](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/1.png)
 
 **Contoh Output:**\
-![Output Soal 4B](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/2.png)
+![Output Soal ](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/2.png)
 
 **Contoh Output:**\
-![Output Soal 4A](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/3.png)
+![Output Soal ](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/3.png)
 
 **Contoh Output:**\
-![Output Soal 4B](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/4.png)
+![Output Soal ](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/4.png)
 
 **Contoh Output:**\
-![Output Soal 4A](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/5.png)
+![Output Soal ](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/5.png)
 
 **Contoh Output:**\
-![Output Soal 4B](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/6.png)
+![Output Soal ](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/6.png)
 
 **Contoh Output:**\
-![Output Soal 4A](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/7.png)
+![Output Soal ](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/7.png)
 
 **Contoh Output:**\
-![Output Soal 4B](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/8.png)
+![Output Soal ](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/8.png)
 
 **Contoh Output:**\
-![Output Soal 4A](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/9.png)
+![Output Soal ](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/9.png)
 
 
 
@@ -460,10 +460,10 @@ fungsi untuk melakukan listing pada direktori tempat program berada
 ### DOKUMENTASI
 
 **Contoh Output:**\
-![Output Soal 4A](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/1586609247597.jpg)
+![Output Soal ](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/1586609247597.jpg)
 
 **Contoh Output:**\
-![Output Soal 4B](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/1586609324106.jpg)
+![Output Soal ](https://github.com/belladewusa/SoalShiftSISOP20_modul3_T07/blob/master/modul3/1586609324106.jpg)
 
 
 
